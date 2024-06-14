@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <title>Sazzy's Web ADB Menu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Web based ADB Host for Quest 2 Tools">
+    <meta property="og:title" content="Sazzy's Web ADB Menu">
+    <meta property="og:description" content="Web based ADB Host for Quest 2 Tools">
+    <meta property="og:image" content="">
+    <meta property="og:url" content="">
+    <meta property="og:type" content="website">
+    <link rel="shortcut icon" href="favicon.gif" type="image/x-icon">
+    <script src="webadb.js"></script>
+    <script src="main.js" defer=""></script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-BDS57RBQ3Q"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-BDS57RBQ3Q');
+    </script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1><a href="#">#</a> Sazzy's Quest Menu</h1>
+    <div id="connectBtns">
+        <button id="connectButton">Connect</button>
+        <button id="showButton">Show Menu</button>
+    </div>
+    <button id="ko-fiButton"><a href="hzcmds.html">Hz Commands</a></button>
+    <button id="discordButton"><a href="https://discord.gg/JygWJrfv85">My Discord</a></button>
+    <p id="err">Error. Hit "allow" if prompted on Quest, then try again. If this persists more than 4 times, try: <br>-Unplug / Plug-in Quest, <br>-Toggle USB debugging, <br>-Reload browser, <br>-Close other ADB programs (SideQuest), <br>-Check that adb.exe is not running, <br>-Restart Quest, <br>-Restart PC, <br>-Try another cable, <br>-Try amother port, <br>-Check you are on a chromium browser, <br>-Check you are using https, not http.</p>
+    <div id="buttons" style="display: none;">
+        <h2>All In One</h2>
+        <input type="number" name="AIO-refreshRate" id="AIO-refreshRate" placeholder="refreshRate (72)">
+        <br><br>
+        <input type="number" name="AIO-swapInterval" id="AIO-swapInterval" placeholder="swapInterval (1)">
+        <br><br>
+        <input type="number" name="AIO-cpuLevel" id="AIO-cpuLevel" placeholder="cpuLevel (2)">
+        <br><br>
+        <input type="number" name="AIO-gpuLevel" id="AIO-gpuLevel" placeholder="gpuLevel (3)">
+        <br><br>
+        <input type="number" name="AIO-textureWidth" id="AIO-textureWidth" placeholder="textureWidth (2000)">
+        <br><br>
+        <input type="number" name="AIO-textureHeight" id="AIO-textureHeight" placeholder="textureHeight (2000)">
+        <br><br>
+        <button id="set-AIO">Set All</button>
+        <button id="copy-AIO">Copy command</button>
+        <p>refreshRate: The number of times the screen refreshes every second (200 Hard Limit)</p>
+        <p>swapInterval: The number of times the screen refreshes before the game refreshes</p>
+        <p>cpuLevel: The CPU power level (-1 - 5)</p>
+        <p>gpuLevel: The GPU power level (-1 - 5)</p>
+        <p>textureWidth: The amount of pixels across the screen (&gt;5000 will lag)</p>
+        <p>textureHeight: The amount of pixels up the screen (&gt;5000 will lag)</p>
+        <h2>Hertz</h2>
+        <button data-hz="60, 60000">0.001Hz (dont do it)</button>
+        <button data-hz="60, 600">0.1Hz</button>
+        <button data-hz="60, 60">1Hz</button>
+        <button data-hz="60, 6">10Hz</button>
+        <button data-hz="45, 4">11.25Hz</button>
+        <button data-hz="60, 4">15Hz</button>
+        <button data-hz="72, 4">18Hz</button>
+        <button data-hz="60, 3">20Hz</button>
+        <button data-hz="90, 4">22.5Hz</button>
+        <button data-hz="72, 3">24Hz</button>
+        <button data-hz="60, 2">30Hz</button>
+        <button data-hz="36, 1">36Hz</button>
+        <button data-hz="72, 2">36Hz alt</button>
+        <button data-hz="120, 3">40Hz</button>
+        <button data-hz="45, 1">45Hz</button>
+        <button data-hz="90, 2">45Hz alt</button>
+        <button data-hz="60, 1">60Hz</button>
+        <button data-hz="69, 1">69Hz</button>
+        <button data-hz="72, 1">72Hz</button>
+        <button data-hz="80, 1">80Hz</button>
+        <button data-hz="90, 1">90Hz</button>
+        <button data-hz="100, 1">100Hz</button>
+        <button data-hz="120, 1">120Hz</button>
+        <button data-hz="144, 1">144Hz</button>
+        <button data-hz="200, 1">200Hz</button>
+        <button data-hz="200, -1">200Hz alt</button>
+        <button data-hz="200, -8">200Hz alt 2</button>
+        <button data-hz="120, 0">max</button>
+        <button data-hz="500, 0">max 500 version</button>
+        <button data-hz="45, 0">max (lower fps)</button>
+        <button data-performance="5, 5">Hardware not good enough?</button>
+        <br><br>
+        <input type="number" name="Hz" id="Hz" placeholder="Hz">
+        <button id="custom-hz">Custom Hz</button>
+        <h2>Then click <button id="refresh-hz">This</button> or enable <button onclick="autoferesh = true">Auto-refresh</button></h2>
+        <h2>Performance</h2>
+        <button data-performance="0, 0">low performance</button>
+        <button data-performance="1, 1">med performance</button>
+        <button data-performance="2, 2">default performance</button>
+        <button data-performance="3, 3">performance boost</button>
+        <button data-performance="3, 0">GPU boost, CPU low</button>
+        <button data-performance="0, 3">CPU boost, GPU low</button>
+        <button data-performance="3, 2">GPU boost, CPU default</button>
+        <button data-performance="2, 3">CPU boost, GPU default</button>
+        <h2>Resolution</h2>
+        <button data-res="2000, 2000">Res 2000 (Default)</button>
+        <button data-res="3000, 3000">Res 3000</button>
+        <button data-res="4000, 4000">Res 4000</button>
+        <button data-res="1000, 1000">Res 1000</button>
+        <button data-res="4000, 100">Res Goofy (4000, 100)</button>
+        <h2>Foveation</h2>
+        <button data-fov="0">HD (0)</button>
+        <button data-fov="1">1</button>
+        <button data-fov="2">2</button>
+        <button data-fov="3">3</button>
+        <button data-fov="4">High Foveation (4)</button>
+        <h2>Telemetry</h2>
+        <button id="disable-telemetry">Disable</button>
+        <button id="enable-telemetry">Enable</button>
+        <h2>Font Size</h2>
+        <button data-font="5">5</button>
+        <button data-font="4">4</button>
+        <button data-font="3">3</button>
+        <button data-font="2">2</button>
+        <button data-font="1">1</button>
+        <button data-font="0.3">0.3</button>
+        <h2>Extras</h2>
+        <button id="disable-timeout">Keep Screen On</button>
+        <button id="enable-timeout">allow screen timeout</button>
+        <button id="disable-guardian">Disable guardian</button>
+        <button id="experimental-settings">Enable experimental settings</button>
+        <button id="chromatic-aberration">Correct Chromatic Aberration</button>
+        <button id="chromatic-aberration-reset">Reset Chromatic Aberration</button>
+        <button id="potato-mode">Potato Recording Mode</button>
+        <button id="corp">Corp Button</button>
+        <h2>Custom</h2>
+        <input type="text" name="cmd" id="cmd" placeholder="cmd (without adb shell prefix)">
+        <button id="custom-command">Custom Command</button>
+        <input type="text" name="cmd2" id="cmd2" placeholder="cmd (with adb shell prefix)">
+        <button id="custom-command2">Custom Command</button>
+        <button id="getProps">List properties</button>
+        <h2>Install apk</h2>
+        <input type="button" value="Choose File" id="choose-apk">
+        <input type="file" name="apk-input" id="apk-input" style="display: none;">
+        <button id="install-apk">Install</button>
+        <h2>Global Output</h2>
+        <div id="globalOutput"></div>
+        <h2>Global Log</h2>
+        <div id="globalLog"></div>
+        <h2>Check</h2>
+        <button id="check-state">check</button>
+        <p id="checkOut"></p>
+    </div>
+    <footer>
+        <p>Huge thanks to .index for making 90% of the code!</p>
+        <p>Researched and developed by <a href="https://twhlynch.me">.index</a></p>
+        <p>Thanks to Etxnight and SS Simon</p>
+    </footer>
+
+
+</body></html>
